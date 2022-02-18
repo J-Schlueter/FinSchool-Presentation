@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/event_entries", type: :request do
+RSpec.describe "/lessons", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # EventEntry. As you add validations to EventEntry, be sure to
+  # Lesson. As you add validations to Lesson, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,7 +26,7 @@ RSpec.describe "/event_entries", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # EventEntriesController, or in your router and rack
+  # LessonsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/event_entries", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      EventEntry.create! valid_attributes
-      get event_entries_url, headers: valid_headers, as: :json
+      Lesson.create! valid_attributes
+      get lessons_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      event_entry = EventEntry.create! valid_attributes
-      get event_entry_url(event_entry), as: :json
+      lesson = Lesson.create! valid_attributes
+      get lesson_url(lesson), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new EventEntry" do
+      it "creates a new Lesson" do
         expect {
-          post event_entries_url,
-               params: { event_entry: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(EventEntry, :count).by(1)
+          post lessons_url,
+               params: { lesson: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(Lesson, :count).by(1)
       end
 
-      it "renders a JSON response with the new event_entry" do
-        post event_entries_url,
-             params: { event_entry: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new lesson" do
+        post lessons_url,
+             params: { lesson: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new EventEntry" do
+      it "does not create a new Lesson" do
         expect {
-          post event_entries_url,
-               params: { event_entry: invalid_attributes }, as: :json
-        }.to change(EventEntry, :count).by(0)
+          post lessons_url,
+               params: { lesson: invalid_attributes }, as: :json
+        }.to change(Lesson, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new event_entry" do
-        post event_entries_url,
-             params: { event_entry: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new lesson" do
+        post lessons_url,
+             params: { lesson: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -88,28 +88,28 @@ RSpec.describe "/event_entries", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested event_entry" do
-        event_entry = EventEntry.create! valid_attributes
-        patch event_entry_url(event_entry),
-              params: { event_entry: new_attributes }, headers: valid_headers, as: :json
-        event_entry.reload
+      it "updates the requested lesson" do
+        lesson = Lesson.create! valid_attributes
+        patch lesson_url(lesson),
+              params: { lesson: new_attributes }, headers: valid_headers, as: :json
+        lesson.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the event_entry" do
-        event_entry = EventEntry.create! valid_attributes
-        patch event_entry_url(event_entry),
-              params: { event_entry: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the lesson" do
+        lesson = Lesson.create! valid_attributes
+        patch lesson_url(lesson),
+              params: { lesson: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the event_entry" do
-        event_entry = EventEntry.create! valid_attributes
-        patch event_entry_url(event_entry),
-              params: { event_entry: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the lesson" do
+        lesson = Lesson.create! valid_attributes
+        patch lesson_url(lesson),
+              params: { lesson: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -117,11 +117,11 @@ RSpec.describe "/event_entries", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested event_entry" do
-      event_entry = EventEntry.create! valid_attributes
+    it "destroys the requested lesson" do
+      lesson = Lesson.create! valid_attributes
       expect {
-        delete event_entry_url(event_entry), headers: valid_headers, as: :json
-      }.to change(EventEntry, :count).by(-1)
+        delete lesson_url(lesson), headers: valid_headers, as: :json
+      }.to change(Lesson, :count).by(-1)
     end
   end
 end

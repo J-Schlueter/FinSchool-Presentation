@@ -5,42 +5,52 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Generating gamers..."
+puts "Creating data..."
 
-Event.create([
+User.create([
     {
-      game: "Halo Infinite",
-      platform: "PC",
-      time: DateTime.new(2022,2,4,18)
+      username: "Joshua",
+      password: "access"
     },
     {
-      game: "FFXIV",
-      platform: "PC",
-      time: DateTime.new(2022,2,4,19)
+      username: "Tester",
+      password: "123"
+    },
+  ])
+
+Lesson.create([
+    {
+        topic: "Budgeting",
+        infotype: "Article",
+        video_link: "https://www.youtube.com/embed/sVKQn2I4HDM",
+        lesson_content: "How to budget money
+        Calculate your monthly income, pick a budgeting method and monitor your progress.
+        
+        Try the 50/30/20 rule as a simple budgeting framework.
+        
+        Allow up to 50% of your income for needs.
+        
+        Leave 30% of your income for wants.
+        
+        Commit 20% of your income to savings and debt repayment.
+        
+        Track and manage your budget through regular check-ins."
     },
     {
-      game: "Super Smash Bros Ultimate",
-      platform: "Nintendo Switch",
-      time: DateTime.new(2022,2,5,12)
+        topic: "Stocks",
+        infotype: "Article",
+        video_link: "https://www.youtube.com/embed/ZCFkWDdmXG8",
+        lesson_content: "A stock (also known as equity) is a security that represents the ownership of a fraction of a corporation. This entitles the owner of the stock to a proportion of the corporation's assets and profits equal to how much stock they own. Units of stock are called shares"
     }
-  ])
+])
 
-  User.create([
-    {
-      name: "Joshua",
-      password: "123"
-    },
-    {
-      name: "Kenneth",
-      password: "123"
-    },
-  ])
 
-  EventEntry.create([
-      {
-          gamertag: "JShooter",
-          user_id: 1,
-          event_id: 1
-      }
-  ])
-puts "✅ Ready up!"
+Comment.create([
+  {
+    text: "I liked this lesson a lot.",
+    user_id: 2,
+    lesson_id: 1
+  }
+])
+
+puts "Data intialized."

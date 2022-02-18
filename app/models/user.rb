@@ -1,9 +1,8 @@
 class User < ApplicationRecord
-    has_many :event_entries, dependent: :destroy
-    has_many :events, through: :event_entries
+    has_many :comments
+    has_many :lessons, through: :comments
 
     has_secure_password
 
-    validates :name, :password, presence: true
-    validates :name, uniqueness: true
+    validates :username, :password, presence: true
 end

@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/events", type: :request do
+RSpec.describe "/comments", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Event. As you add validations to Event, be sure to
+  # Comment. As you add validations to Comment, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,7 +26,7 @@ RSpec.describe "/events", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # EventsController, or in your router and rack
+  # CommentsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/events", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Event.create! valid_attributes
-      get events_url, headers: valid_headers, as: :json
+      Comment.create! valid_attributes
+      get comments_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      event = Event.create! valid_attributes
-      get event_url(event), as: :json
+      comment = Comment.create! valid_attributes
+      get comment_url(comment), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Event" do
+      it "creates a new Comment" do
         expect {
-          post events_url,
-               params: { event: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(Event, :count).by(1)
+          post comments_url,
+               params: { comment: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(Comment, :count).by(1)
       end
 
-      it "renders a JSON response with the new event" do
-        post events_url,
-             params: { event: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new comment" do
+        post comments_url,
+             params: { comment: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Event" do
+      it "does not create a new Comment" do
         expect {
-          post events_url,
-               params: { event: invalid_attributes }, as: :json
-        }.to change(Event, :count).by(0)
+          post comments_url,
+               params: { comment: invalid_attributes }, as: :json
+        }.to change(Comment, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new event" do
-        post events_url,
-             params: { event: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new comment" do
+        post comments_url,
+             params: { comment: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -88,28 +88,28 @@ RSpec.describe "/events", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested event" do
-        event = Event.create! valid_attributes
-        patch event_url(event),
-              params: { event: new_attributes }, headers: valid_headers, as: :json
-        event.reload
+      it "updates the requested comment" do
+        comment = Comment.create! valid_attributes
+        patch comment_url(comment),
+              params: { comment: new_attributes }, headers: valid_headers, as: :json
+        comment.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the event" do
-        event = Event.create! valid_attributes
-        patch event_url(event),
-              params: { event: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the comment" do
+        comment = Comment.create! valid_attributes
+        patch comment_url(comment),
+              params: { comment: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the event" do
-        event = Event.create! valid_attributes
-        patch event_url(event),
-              params: { event: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the comment" do
+        comment = Comment.create! valid_attributes
+        patch comment_url(comment),
+              params: { comment: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -117,11 +117,11 @@ RSpec.describe "/events", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested event" do
-      event = Event.create! valid_attributes
+    it "destroys the requested comment" do
+      comment = Comment.create! valid_attributes
       expect {
-        delete event_url(event), headers: valid_headers, as: :json
-      }.to change(Event, :count).by(-1)
+        delete comment_url(comment), headers: valid_headers, as: :json
+      }.to change(Comment, :count).by(-1)
     end
   end
 end

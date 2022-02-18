@@ -23,13 +23,13 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    user = User.create!(user_params)
-      if user.valid?
-        session[:user_id] = user.id # this is the piece that logs a user in and keeps track of users info in subsequent requests.
-        render json: user, status: :ok
-      else
-        render json: user.errors.full_messages, status: :unprocessable_entity
-      end
+    @user = User.new(user_params)
+
+    if @user.save
+      render json: @user, status: :created, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /users/1
@@ -54,6 +54,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:name, :password, :password_confirmation)
+      params.permit(:username, :password)
     end
 end

@@ -2,7 +2,7 @@ import NavBar from "./NavBar"
 import React, {useEffect, useState} from "react"
 
 function Login({allUsers, setCurrentUser, currentUser}) {
-    const [name, setName] = useState("")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     function handleLogin(e) {
         e.preventDefault()
@@ -17,7 +17,7 @@ function Login({allUsers, setCurrentUser, currentUser}) {
         //     console.log("Invalid Credentials")
         // }
         const userCreds = {
-            name: name,
+            username: username,
             password: password
         }
         fetch("/login", {
@@ -29,13 +29,13 @@ function Login({allUsers, setCurrentUser, currentUser}) {
           })
           .then(resp => resp.json())
           .then((user) => {
-              if(user.name == undefined) {
+              if(user.username == undefined) {
                   setCurrentUser(undefined)
                   window.alert("Invalid Credentials")
               } else {
               console.log(user);
               setCurrentUser(user);
-              setName("")
+              setUsername("")
               setPassword("")}
           })
 
@@ -46,7 +46,7 @@ function Login({allUsers, setCurrentUser, currentUser}) {
             <div className="signup">
                 <form className="signupForm">
                     <p>Login</p>
-                    <input placeholder="Name" value={name} className="signUpInput" onChange={(e) => setName(e.target.value)}></input>
+                    <input placeholder="Username" value={username} className="signUpInput" onChange={(e) => setUsername(e.target.value)}></input>
                     <input placeholder="Password" value={password} className="signUpInput" onChange={(e) => setPassword(e.target.value)}></input>
                     {/* <input placeholder="Platform(s)" className="signUpInput"></input>
                     <input placeholder="Gamertag(s)" className="signUpInput"></input> */}

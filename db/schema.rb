@@ -10,36 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_165944) do
+ActiveRecord::Schema.define(version: 2022_02_16_203912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "event_entries", force: :cascade do |t|
-    t.string "gamertag"
+  create_table "comments", force: :cascade do |t|
+    t.string "text"
     t.bigint "user_id", null: false
-    t.bigint "event_id", null: false
+    t.bigint "lesson_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_event_entries_on_event_id"
-    t.index ["user_id"], name: "index_event_entries_on_user_id"
+    t.index ["lesson_id"], name: "index_comments_on_lesson_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "game"
-    t.string "platform"
-    t.datetime "time"
+  create_table "lessons", force: :cascade do |t|
+    t.string "topic"
+    t.string "infotype"
+    t.string "video_link"
+    t.string "lesson_content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "event_entries", "events"
-  add_foreign_key "event_entries", "users"
+  add_foreign_key "comments", "lessons"
+  add_foreign_key "comments", "users"
 end

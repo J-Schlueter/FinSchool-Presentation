@@ -3,18 +3,19 @@ import React, {useState} from "react"
 import {Link} from "react-router-dom";
 
 function Signup({currentUser, setCurrentUser, allUsers}) {
-    const [name, setName] = useState()
-    const [password, setPassword] = useState()
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     function submitEvent(e) {
         e.preventDefault()
-        const matchingName = allUsers.find(u => u.name == name)
+        const matchingName = allUsers.find(u => u.username == username)
         if(matchingName == undefined) {
-            const user = {
-                name: name,
+            const user = {  
+                username: username,
                 password: password
             }
-            fetch('https://lfg-flatiron.herokuapp.com/users',{
+            
+            fetch('/users',{
                 method: "POST",
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify(user)
@@ -22,8 +23,13 @@ function Signup({currentUser, setCurrentUser, allUsers}) {
             .then(res => {
                 if(res.ok){
                     res.json().then(setCurrentUser)
-                }
-                window.location.href = "https://lfg-flatiron.herokuapp.com/login";
+                } else {
+                    res.json().then((errors) => {
+                      console.error(errors);
+                    });
+                  }
+                // debugger
+                window.location.href = "/login";
                 // setCurrentUser(user)
             })
         } else {
@@ -31,19 +37,17 @@ function Signup({currentUser, setCurrentUser, allUsers}) {
         }
     }
 
-    function test() {
-        console.log(currentUser)
-    }
+    // function test() {
+    //     console.log(currentUser)
+    // }
     return(
         <div>
         <NavBar setCurrentUser={setCurrentUser}/>
             <div className="signup">
                 <form className="signupForm" >
                     <p>Signup</p>
-                    <input placeholder="Name" className="signUpInput"  onChange={(e) => setName(e.target.value)}></input>
+                    <input placeholder="Username" className="signUpInput"  onChange={(e) => setUsername(e.target.value)}></input>
                     <input placeholder="Password" className="signUpInput"  onChange={(e) => setPassword(e.target.value)}></input>
-                    {/* <input placeholder="Platform(s)" className="signUpInput"></input>
-                    <input placeholder="Gamertag(s)" className="signUpInput"></input> */}
                 </form>
                     <button onClick={(e) => submitEvent(e)} className="formButton">Create Account</button>
             </div>

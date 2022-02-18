@@ -76,12 +76,10 @@ GEM
     crass (1.0.6)
     diff-lcs (1.5.0)
     erubi (1.10.0)
-
     ffi (1.15.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.10)
-
       concurrent-ruby (~> 1.0)
     jsonapi-renderer (0.2.2)
     listen (3.7.1)
@@ -201,4 +199,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.2.29
+   2.3.6

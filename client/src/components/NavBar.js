@@ -42,7 +42,8 @@ function NavBar({currentUser, setCurrentUser}) {
         if(currentUser == undefined) {
             return <div className="NavBar">
             <ul className="NavBarUL">
-                <Link to= "/" className="navBarLink">Home</Link>
+                <h1 id="NavLogoType">FinSchool</h1>
+                {/* <Link to= "/" className="navBarLink">Home</Link> */}
             </ul>
             <ul className = "NavBarULRight">
                 <Link to= "/login" className="navBarLink">Login</Link>
@@ -52,9 +53,9 @@ function NavBar({currentUser, setCurrentUser}) {
         } else {
             return <div className="NavBar">
             <ul className="NavBarUL">
-                <Link to= "/" className="navBarLink">Home</Link>
-                <Link to= "/createevent" className="navBarLink">Create Event</Link>
-                <Link to= "/profile" className="navBarLink">Profile</Link>
+                <Link to= "/lessons" className="navBarLink">Lessons</Link>
+                {/* <Link to= "/createevent" className="navBarLink">Create Event</Link> */}
+                {/* <Link to= "/profile" className="navBarLink">Profile</Link> */}
             </ul>
             <ul className = "NavBarULRight">
                 <h2 className="navBarLink">{currentUser.name}</h2>
