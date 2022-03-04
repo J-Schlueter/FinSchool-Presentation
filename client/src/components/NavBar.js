@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import FinSchool from "./Assets/FinSchool.png";
 
 
 function NavBar({currentUser, setCurrentUser}) {
@@ -41,9 +42,9 @@ function NavBar({currentUser, setCurrentUser}) {
     function renderNav() {
         if(currentUser == undefined) {
             return <div className="NavBar">
+            <image id="NavLogoType" src={FinSchool} alt="FinSchool wallet logo"/>
             <ul className="NavBarUL">
-                <h1 id="NavLogoType">FinSchool</h1>
-                {/* <Link to= "/" className="navBarLink">Home</Link> */}
+                <Link to= "/" className="navBarLink">FinSchool</Link>
             </ul>
             <ul className = "NavBarULRight">
                 <Link to= "/login" className="navBarLink">Login</Link>

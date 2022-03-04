@@ -21,7 +21,7 @@ User.create([
 Lesson.create([
     {
         topic: "Budgeting",
-        infotype: "Article",
+        infotype: "Info",
         video_link: "https://www.youtube.com/embed/sVKQn2I4HDM",
         lesson_content: "How to budget money
         Calculate your monthly income, pick a budgeting method and monitor your progress.
@@ -38,7 +38,7 @@ Lesson.create([
     },
     {
         topic: "Stocks",
-        infotype: "Article",
+        infotype: "Info",
         video_link: "https://www.youtube.com/embed/ZCFkWDdmXG8",
         lesson_content: "A stock (also known as equity) is a security that represents the ownership of a fraction of a corporation. This entitles the owner of the stock to a proportion of the corporation's assets and profits equal to how much stock they own. Units of stock are called shares"
     }

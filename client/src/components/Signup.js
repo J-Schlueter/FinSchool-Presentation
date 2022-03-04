@@ -33,7 +33,7 @@ function Signup({currentUser, setCurrentUser, allUsers}) {
                 // setCurrentUser(user)
             })
         } else {
-            window.alert("Name already Exists!")
+            window.alert("Username is taken!")
         }
     }
 

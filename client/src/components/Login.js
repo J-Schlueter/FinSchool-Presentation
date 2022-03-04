@@ -1,9 +1,15 @@
 import NavBar from "./NavBar"
 import React, {useEffect, useState} from "react"
+import {useNavigate} from "react-router-dom"
 
 function Login({allUsers, setCurrentUser, currentUser}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
+    const navigate = useNavigate();
+
+        
+    
     function handleLogin(e) {
         e.preventDefault()
         // const validUsernames = (allUsers.filter((user) => user.name == name))
@@ -38,6 +44,8 @@ function Login({allUsers, setCurrentUser, currentUser}) {
               setUsername("")
               setPassword("")}
           })
+
+          navigate('/lessons')
 
     }
     return(
